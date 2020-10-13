@@ -10,9 +10,24 @@ fun OkHttpClient.execute(action: Request.Builder.() -> Unit): Response {
 
 fun main() {
     val client = OkHttpClient()
+    val ipList = readIPList()
+    println(ipList)
     println(
         client.execute {
             url("https://google.com")
         }
     )
+}
+
+fun readIPList(): Map<Int, String> {
+    val ipList = mutableMapOf<Int, String>()
+    println("---[ Initialize IP List ]---")
+    while (true) {
+        print("ID: ")
+        val id = readLine()?.toIntOrNull() ?: return ipList
+        print("IP: ")
+        val ip = readLine() ?: return ipList
+        ipList[id] = ip
+        println("Add ($id, $ip)")
+    }
 }
