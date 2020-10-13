@@ -16,7 +16,7 @@ fun main() {
         print("ID: ")
         val id = readLine()?.toIntOrNull()
         val ip = ipList[id] ?: return println("Good Bye")
-        println("Command: #")
+        print("Command: #")
         val command = readLine()
         if (command.isNullOrBlank()) return println("Good Bye")
         val url = "http://${ip}/cgi-bin/aw_ptz?cmd=%23${command}&res=1"
