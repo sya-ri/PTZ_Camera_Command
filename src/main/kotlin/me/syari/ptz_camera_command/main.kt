@@ -11,6 +11,7 @@ fun OkHttpClient.execute(action: Request.Builder.() -> Unit): Response {
 fun main() {
     val client = OkHttpClient()
     val ipList = readIPList()
+    println("---[ Command ]---")
     while (true) {
         print("ID: ")
         val id = readLine()?.toIntOrNull()
