@@ -11,12 +11,20 @@ fun OkHttpClient.execute(action: Request.Builder.() -> Unit): Response {
 fun main() {
     val client = OkHttpClient()
     val ipList = readIPList()
-    println(ipList)
-    println(
-        client.execute {
-            url("https://google.com")
-        }
-    )
+    while (true) {
+        print("ID: ")
+        val id = readLine()?.toIntOrNull()
+        val ip = ipList[id] ?: return println("Good Bye")
+        println("Command: #")
+        val command = readLine()
+        if (command.isNullOrBlank()) return println("Good Bye")
+        val url = "http://${ip}/cgi-bin/aw_ptz?cmd=%23${command}&res=1"
+        println(
+            client.execute {
+                url(url)
+            }
+        )
+    }
 }
 
 fun readIPList(): Map<Int, String> {
