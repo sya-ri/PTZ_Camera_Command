@@ -23,7 +23,7 @@ fun main() {
         println(
             client.execute {
                 url(url)
-            }
+            }.let { it to it.body?.string() }
         )
     }
 }
